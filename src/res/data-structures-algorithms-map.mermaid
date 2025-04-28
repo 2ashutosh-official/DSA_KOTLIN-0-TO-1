@@ -1,0 +1,33 @@
+```mermaid
+flowchart TB
+    Arrays[Arrays in Kotlin] --> Basics
+    Arrays --> Operations
+    Arrays --> AdvancedUsage
+    Arrays --> RelatedAlgorithms
+    
+    Basics --> Declaration["Declaration & Initialization\n- arrayOf()\n- intArrayOf()\n- Array constructor"]
+    Basics --> Access["Access & Modification\n- Indexing with []\n- Iteration methods"]
+    
+    Operations --> Traverse["Traversal Techniques\n- for loops\n- forEach/forEachIndexed\n- indices property"]
+    Operations --> Manipulation["Array Manipulation\n- Sorting (sortedArray, sort)\n- Filtering (filter)\n- Transformation (map)"]
+    
+    AdvancedUsage --> MultiDimension["Multi-dimensional Arrays\n- 2D arrays\n- Matrix operations"]
+    AdvancedUsage --> ArrayLists["ArrayLists\n- Dynamic sizing\n- Advantages over arrays"]
+    
+    RelatedAlgorithms --> KadaneAlgo["Kadane's Algorithm\n- Maximum subarray sum\n- O(n) time complexity"]
+    RelatedAlgorithms --> SlidingWindow["Sliding Window\n- Fixed & variable size\n- Subarray problems"]
+    RelatedAlgorithms --> BuySellStock["Stock Buy & Sell\n- One transaction\n- Multiple transactions"]
+    RelatedAlgorithms --> TrappingRain["Trapping Rain Water\n- Two-pointer approach\n- Using stacks"]
+    
+    KadaneAlgo --> KadaneImpl["Implementation:\n- Track current & max sum\n- Reset negative subarrays"]
+    
+    SlidingWindow --> FixedWindow["Fixed Window:\n- Use window size k\n- Slide through array"]
+    SlidingWindow --> VariableWindow["Variable Window:\n- Expand/contract based on condition\n- Track optimal window"]
+    
+    BuySellStock --> SingleTxn["Single Transaction:\n- Track min price\n- Calculate max profit"]
+    BuySellStock --> MultiTxn["Multiple Transactions:\n- Valley-peak approach\n- Add all profitable segments"]
+    
+    TrappingRain --> TwoPointer["Two-pointer:\n- Track left/right max\n- Calculate trapped water"]
+    
+    class Arrays,RelatedAlgorithms emphasis;
+    classDef emphasis fill:#f9f,stroke:#333,stroke-width:2px;
