@@ -35,6 +35,15 @@ class MaxSumSubQn {
             println(maxSum)
         }
 
+       fun IntArray.maxSum():Int{
+            var count =0
+
+           this.forEach { num->
+               if (num > count) count = num
+           }
+           return count
+        }
+
         fun bruteForce(arr: IntArray) {
             // O(n^2)
 //    bruteForce(array)
@@ -155,7 +164,7 @@ val array2 = array1.toList().toIntArray()
 
 object TappingWater{
 
-    val height = intArrayOf(3,1,2,4,0,1,3,2)// ans =8
+    val height = intArrayOf(4,2,1,5,6,3,2,4,2)// ans =8
 
 
     fun tappRainWater()  {
@@ -184,6 +193,30 @@ object TappingWater{
         }
 
         println(water)
+    }
+
+    fun nextSmallest(arr:IntArray = height){
+
+        val m =arr.size
+        val stack = ArrayDeque<Int>()
+        val answar = IntArray(m){m}
+        for(i in m-1 downTo 0){
+
+            val n = arr[i]
+
+            while(!stack.isEmpty() && n <= arr[stack.last()]){
+                stack.removeLast()
+            }
+
+
+
+            if(stack.isEmpty()) {answar[i] = m}
+            else answar[i] = stack.last()
+
+            stack.addLast(i)
+        }
+
+       println(answar.toList())
     }
 }
 
@@ -291,5 +324,73 @@ object SortingAlgos{
         arr[j] = temp
     }
 
+
+}
+
+object Solution {
+
+
+    fun largestRectangleArea(heights: IntArray): Int {
+
+        val lower = prevSmallest(heights)
+        val upper = nextSmallest(heights)
+
+        var maxArea = 0
+        for(h in heights.indices){
+            val area = heights[h]*(upper[h]-lower[h]-1)
+            println("for ${heights[h]} area is $area as upper ${upper[h]} lower ${lower[h]}")
+            maxArea = maxOf(maxArea , area)
+        }
+
+        return maxArea
+    }
+
+    fun prevSmallest(arr:IntArray):IntArray {
+
+        val n =arr.size
+        val stack = ArrayDeque<Int>()
+        val answar = IntArray(n)
+        for(i in arr.indices){
+
+            val m = arr[i]
+
+            while(!stack.isEmpty() && m <= arr[stack.last()]){
+                stack.removeLast()
+            }
+
+
+
+            if(stack.isEmpty()) {answar[i] = -1}
+            else answar[i] = stack.last()
+
+            stack.addLast(i)
+        }
+
+        return answar
+    }
+
+    fun nextSmallest(arr:IntArray ):IntArray{
+
+        val n =arr.size
+        val stack = ArrayDeque<Int>()
+        val answar = IntArray(n)
+        for(i in n-1 downTo 0){
+
+            val m = arr[i]
+
+            while(!stack.isEmpty() && m <= arr[stack.last()]){
+                stack.removeLast()
+            }
+
+
+
+            if(stack.isEmpty()) {answar[i] = n}
+            else answar[i] = stack.last()
+
+            stack.addLast(i)
+        }
+
+        return answar
+    }
 
 }
